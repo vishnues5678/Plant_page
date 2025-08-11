@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flora - Your Online Plant Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2dd4bf;
+            transition: width 0.3s ease;
+        }
+        .nav-link.active::after,
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+        .plant-card:hover .plant-image {
+            transform: scale(1.05);
+        }
+        .plant-card .plant-image {
+            transition: transform 0.3s ease;
+        }
+        .btn-primary {
+            background-color: #14b8a6;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #0d9488;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-display text-teal-600" onclick="showPage('home')">Flora</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#" class="nav-link active" onclick="showPage('home', this)">Home</a>
+                <a href="#" class="nav-link" onclick="showPage('products', this)">Products</a>
+                <a href="#" class="nav-link" onclick="showPage('about', this)">About</a>
+                <a href="#" class="nav-link" onclick="showPage('contact', this)">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-800 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#" class="block py-2 text-center nav-link active" onclick="showPage('home', this); toggleMenu();">Home</a>
+            <a href="#" class="block py-2 text-center nav-link" onclick="showPage('products', this); toggleMenu();">Products</a>
+            <a href="#" class="block py-2 text-center nav-link" onclick="showPage('about', this); toggleMenu();">About</a>
+            <a href="#" class="block py-2 text-center nav-link" onclick="showPage('contact', this); toggleMenu();">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <section class="relative bg-cover bg-center h-[60vh] text-white" style="background-image: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=2874&auto=format&fit=crop');">
+                <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+                <div class="relative container mx-auto px-6 h-full flex flex-col justify-center items-center text-center">
+                    <h1 class="text-4xl md:text-6xl font-display mb-4">Bring Nature Indoors</h1>
+                    <p class="text-lg md:text-xl mb-8 max-w-2xl">Find the perfect plants to brighten up your space and purify your air.</p>
+                    <button class="btn-primary text-white font-bold py-3 px-8 rounded-full text-lg" onclick="showPage('products')">Shop Now</button>
+                </div>
+            </section>
+            
+            <!-- Featured Products Section -->
+            <section class="py-16 bg-gray-50">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl font-display text-center mb-10">Featured Plants</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Featured Plant 1 -->
+                        <div class="plant-card bg-white rounded-lg shadow-lg overflow-hidden">
+                            <div class="overflow-hidden h-64">
+                                <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Frukmini1.flixcart.com%2Fimage%2F300%2F300%2Fxif0q%2Fplant-sapling%2Fc%2Fe%2Fz%2Fyes-perennial-yes-swisscheese-small-1-grow-bag-rvg-original-imah3yyq67kggqvc.jpeg&f=1&nofb=1&ipt=d04bd5f66f1f538e2c2c5f2a1fd5d35e4e9f39eb00745752f3434944df6659fd" alt="Monstera Deliciosa" class="w-full h-full object-cover plant-image">
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2">Monstera Deliciosa</h3>
+                                <p class="text-gray-600 mb-4">₹299.00</p>
+                            </div>
+                        </div>
+                        <!-- Featured Plant 2 -->
+                        <div class="plant-card bg-white rounded-lg shadow-lg overflow-hidden">
+                             <div class="overflow-hidden h-64">
+                                <img src="https://images.unsplash.com/photo-1614594975525-e45190c55d0b?q=80&w=200&auto=format&fit=crop" alt="Snake Plant" class="w-full h-full object-cover plant-image">
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2">Snake Plant</h3>
+                                <p class="text-gray-600 mb-4">₹399.00</p>
+                            </div>
+                        </div>
+                        <!-- Featured Plant 3 -->
+                        <div class="plant-card bg-white rounded-lg shadow-lg overflow-hidden">
+                             <div class="overflow-hidden h-64">
+                                <img src="https://images.unsplash.com/photo-1600411832986-5a4477b64a1c?q=80&w=200&auto=format&fit=crop" alt="Fiddle Leaf Fig" class="w-full h-full object-cover plant-image">
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2">Fiddle Leaf Fig</h3>
+                                <p class="text-gray-600 mb-4">₹499.00</p>
+                            </div>
+                        </div>
+                        <!-- Featured Plant 4 -->
+                        <div class="plant-card bg-white rounded-lg shadow-lg overflow-hidden">
+                             <div class="overflow-hidden h-64">
+                                <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Frukmini1.flixcart.com%2Fimage%2F300%2F300%2Fxif0q%2Fplant-sapling%2Fc%2Fz%2Fe%2Fannual-yes-yes-australian-pothos-money-plant-1-pot-planetreee-original-imaghygxecgkcrht.jpeg&f=1&nofb=1&ipt=9708ffc04a2c55626bedf61b4167021d5e6b77269eceb01f5fe8ccaa01f23276" alt="Pothos" class="w-full h-full object-cover plant-image">
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2">Pothos</h3>
+                                <p class="text-gray-600 mb-4">₹552.00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Products Page -->
+        <div id="products" class="page">
+            <section class="py-16">
+                <div class="container mx-auto px-6">
+                    <h1 class="text-4xl font-display text-center mb-12">Our Collection</h1>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                        <!-- Product 1 -->
+                        <div class="plant-card bg-white rounded-lg shadow-lg overflow-hidden">
+                            <div class="overflow-hidden h-64"><img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Frukmini1.flixcart.com%2Fimage%2F300%2F300%2Fxif0q%2Fplant-sapling%2Fc%2Fe%2Fz%2Fyes-perennial-yes-swisscheese-small-1-grow-bag-rvg-original-imah3yyq67kggqvc.jpeg&f=1&nofb=1&ipt=d04bd5f66f1f538e2c2c5f2a1fd5d35e4e9f39eb00745752f3434944df6659fd" alt="Monstera Deliciosa" class="w-full h-full object-cover plant-image"></div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2">Monstera Deliciosa</h3>
+                                <p class="text-gray-600 mb-4">₹299.00</p>
+                                <button class="w-full btn-primary text-white font-bold py-2 px-4 rounded">Add to Cart</button>
+                            </div>
+                        </div>
+                        <!-- Product 2 -->
+                        <div class="plant-card bg-white rounded-lg shadow-lg overflow-hidden">
+                            <div class="overflow-hidden h-64"><img src="https://images.unsplash.com/photo-1614594975525-e45190c55d0b?q=80&w=200&auto=format&fit=crop" alt="Snake Plant" class="w-full h-full object-cover plant-image"></div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2">Snake Plant</h3>
+                                <p class="text-gray-600 mb-4">₹399.00</p>
+                                <button class="w-full btn-primary text-white font-bold py-2 px-4 rounded">Add to Cart</button>
+                            </div>
+                        </div>
+                        <!-- Product 3 -->
+                        <div class="plant-card bg-white rounded-lg shadow-lg overflow-hidden">
+                            <div class="overflow-hidden h-64"><img src="https://images.unsplash.com/photo-1600411832986-5a4477b64a1c?q=80&w=200&auto=format&fit=crop" alt="Fiddle Leaf Fig" class="w-full h-full object-cover plant-image"></div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2">Fiddle Leaf Fig</h3>
+                                <p class="text-gray-600 mb-4">₹499.00</p>
+                                <button class="w-full btn-primary text-white font-bold py-2 px-4 rounded">Add to Cart</button>
+                            </div>
+                        </div>
+                        <!-- Product 4 -->
+                        <div class="plant-card bg-white rounded-lg shadow-lg overflow-hidden">
+                            <div class="overflow-hidden h-64"><img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Frukmini1.flixcart.com%2Fimage%2F300%2F300%2Fxif0q%2Fplant-sapling%2Fc%2Fz%2Fe%2Fannual-yes-yes-australian-pothos-money-plant-1-pot-planetreee-original-imaghygxecgkcrht.jpeg&f=1&nofb=1&ipt=9708ffc04a2c55626bedf61b4167021d5e6b77269eceb01f5fe8ccaa01f23276" alt="Pothos" class="w-full h-full object-cover plant-image"></div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2">Pothos</h3>
+                                <p class="text-gray-600 mb-4">₹552.00</p>
+                                <button class="w-full btn-primary text-white font-bold py-2 px-4 rounded">Add to Cart</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 5 -->
+                        <div class="plant-card bg-white rounded-lg shadow-lg overflow-hidden">
+                            <div class="overflow-hidden h-64"><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.chhajedgarden.com%2Fcdn%2Fshop%2Ffiles%2FCalathea-Illustris-Indoor-Plant_2048x2732.jpg%3Fv%3D1703324563&f=1&nofb=1&ipt=18754460fe4a645e399b1009ea64042b19fa25afbc917a99ff2db0d6f679e9e5" alt="Calathea" class="w-full h-full object-cover plant-image"></div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2">Calathea</h3>
+                                <p class="text-gray-600 mb-4">₹540.00.00</p>
+                                <button class="w-full btn-primary text-white font-bold py-2 px-4 rounded">Add to Cart</button>
+                            </div>
+                        </div>
+                         <!-- Product 7 -->
+                        <div class="plant-card bg-white rounded-lg shadow-lg overflow-hidden">
+                            <div class="overflow-hidden h-64"><img src="https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?q=80&w=200&auto=format&fit=crop" alt="Succulent Mix" class="w-full h-full object-cover plant-image"></div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2">Succulent Mix</h3>
+                                <p class="text-gray-600 mb-4">₹599.00.00</p>
+                                <button class="w-full btn-primary text-white font-bold py-2 px-4 rounded">Add to Cart</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- About Page -->
+        <div id="about" class="page">
+            <section class="py-16 bg-gray-50">
+                <div class="container mx-auto px-6">
+                    <div class="lg:flex items-center">
+                        <div class="lg:w-1/2">
+                            <img src="https://images.unsplash.com/photo-1525498128493-380d1990a112?q=80&w=800&auto=format&fit=crop" alt="Person caring for plants" class="rounded-lg shadow-xl">
+                        </div>
+                        <div class="lg:w-1/2 lg:pl-12 mt-8 lg:mt-0">
+                            <h1 class="text-4xl font-display mb-6">Our Story</h1>
+                            <p class="text-lg text-gray-700 mb-4">Flora was born from a simple idea: to share the joy of living with plants. We believe that bringing a bit of nature into your home can transform your space and your well-being.</p>
+                            <p class="text-lg text-gray-700 mb-4">Founded in 2020, our passion for greenery has grown into a curated collection of the finest houseplants, sourced from the best local growers. We're dedicated to providing healthy, beautiful plants and the knowledge you need to help them thrive.</p>
+                            <p class="text-lg text-gray-700">Thank you for joining us on this green journey. We're excited to help you find your perfect plant companion.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Contact Page -->
+        <div id="contact" class="page">
+            <section class="py-16">
+                <div class="container mx-auto px-6">
+                    <h1 class="text-4xl font-display text-center mb-12">Get In Touch</h1>
+                    <div class="max-w-3xl mx-auto">
+                        <div class="bg-white p-8 rounded-lg shadow-lg">
+                            <form>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                    <div>
+                                        <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
+                                        <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500" required>
+                                    </div>
+                                    <div>
+                                        <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                                        <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500" required>
+                                    </div>
+                                </div>
+                                <div class="mb-6">
+                                    <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+                                    <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500" required>
+                                </div>
+                                <div class="mb-6">
+                                    <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                                    <textarea id="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500" required></textarea>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn-primary text-white font-bold py-3 px-8 rounded-full text-lg">Send Message</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="text-center mt-12">
+                            <p class="text-lg font-medium">Find us at:</p>
+                            <p class="text-gray-600">123 Green St, Plantville, PV 12345</p>
+                            <p class="text-gray-600">Email: hello@flora.com | Phone: (123) 456-7890</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-center md:text-left">&copy; 2024 Flora. All Rights Reserved.</p>
+                <div class="flex mt-4 md:mt-0">
+                    <a href="#" class="mx-2 hover:text-teal-400 transition-colors">Facebook</a>
+                    <a href="#" class="mx-2 hover:text-teal-400 transition-colors">Instagram</a>
+                    <a href="#" class="mx-2 hover:text-teal-400 transition-colors">Twitter</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- Page Navigation ---
+        function showPage(pageId, element) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Show the selected page
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+            }
+            
+            // If an element is passed, handle active link styling
+            if(element) {
+                // Remove active class from all nav links
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                // Add active class to the clicked link
+                element.classList.add('active');
+
+                // Also handle mobile menu links if they exist
+                 const mobileLinks = document.querySelectorAll('#mobile-menu .nav-link');
+                 const desktopLinks = document.querySelectorAll('header .hidden.md\\:flex .nav-link');
+
+                // Find the corresponding link in the other menu and activate it
+                for(let i = 0; i < desktopLinks.length; i++){
+                    if(desktopLinks[i].getAttribute('onclick') === element.getAttribute('onclick')){
+                        mobileLinks[i].classList.add('active');
+                        desktopLinks[i].classList.add('active');
+                    }
+                }
+            } else {
+                // If called without element (e.g. from "Shop Now" button), set active link based on pageId
+                 document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('onclick').includes(`'${pageId}'`)) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            // Scroll to top on page change
+            window.scrollTo(0, 0);
+        }
+
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        mobileMenuButton.addEventListener('click', toggleMenu);
+        
+        // --- Initial page load ---
+        // Ensures the home page is shown by default
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('home', document.querySelector('.nav-link[onclick*="home"]'));
+        });
+
+    </script>
+</body>
+</html>
